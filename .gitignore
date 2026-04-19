@@ -1,0 +1,13 @@
+# Fichiers temporaires
+*.tmp
+*.temp
+*.log
+
+# Dossier backup
+backup/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
