@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Projet | Design Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Canvas pour l'arrière-plan animé -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navbar Ultra Premium -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">✨</span>
+                    <span class="logo-text">Islem<span>Khlifi</span></span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">
+                    <span class="nav-icon">🏠</span> Accueil
+                </a></li>
+                <li><a href="about.html">
+                    <span class="nav-icon">📖</span> À propos
+                </a></li>
+                <li><a href="contact.html">
+                    <span class="nav-icon">📧</span> Contact
+                </a></li>
+            </ul>
+            <div class="nav-toggle">☰</div>
+        </div>
+    </nav>
+
+    <!-- Contenu Principal -->
+    <main class="main-content">
+        <div class="hero-section">
+            <div class="hero-badge">
+                <span class="badge-pulse">●</span> Version 2.0
+            </div>
+            <h1 class="hero-title">
+                Bienvenue sur<br>
+                <span class="gradient-text">l'expérience numérique</span>
+            </h1>
+            <p class="hero-subtitle">
+                Un projet professionnel utilisant Git & GitHub<br>
+                avec un design d'exception
+            </p>
+            <div class="hero-buttons">
+                <a href="#objectifs" class="btn btn-primary">
+                    <span>Explorer</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+                <a href="contact.html" class="btn btn-secondary">
+                    <span>Contactez-nous</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="objectifs" class="objectifs-section">
+            <div class="section-header">
+                <span class="section-tag">Objectifs</span>
+                <h2>Ce que nous allons<br>accomplir ensemble</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card card-1">
+                    <div class="card-icon">💻</div>
+                    <h3>Maîtriser Git</h3>
+                    <p>Les commandes Git de base pour gérer vos versions comme un pro</p>
+                    <div class="card-footer">
+                        <span class="card-number">01</span>
+                        <span class="card-status">✓</span>
+                    </div>
+                </div>
+                <div class="card card-2">
+                    <div class="card-icon">🌿</div>
+                    <h3>Gérer les branches</h3>
+                    <p>Créer, fusionner et organiser votre workflow de développement</p>
+                    <div class="card-footer">
+                        <span class="card-number">02</span>
+                        <span class="card-status">✓</span>
+                    </div>
+                </div>
+                <div class="card card-3">
+                    <div class="card-icon">🐙</div>
+                    <h3>GitHub Mastery</h3>
+                    <p>Collaborer et partager votre code sur la plateforme leader</p>
+                    <div class="card-footer">
+                        <span class="card-number">03</span>
+                        <span class="card-status">✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Maîtrise</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="24">0</div>
+                <div class="stat-label">Jours/Semaine</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="1000">0</div>
+                <div class="stat-label">Lignes de code</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Islem Khlifi - Designé avec <span class="heart">❤️</span> pour l'excellence</p>
+            <p class="footer-version">Git Version: main@latest</p>
+        </div>
+    </footer>
+
+    <script src="script.js">
+        // Particles Canvas Animation
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = [];
+const PARTICLE_COUNT = 80;
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 3 + 1,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.2
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(108, 92, 231, ${p.opacity})`;
+        ctx.fill();
+    });
+    
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile Menu Toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+}
+
+// Stats Counter Animation
+const statNumbers = document.querySelectorAll('.stat-number');
+const statsSection = document.querySelector('.stats-section');
+
+let animated = false;
+
+function animateNumbers() {
+    if (animated) return;
+    
+    statNumbers.forEach(stat => {
+        const target = parseInt(stat.dataset.target);
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                stat.textContent = target + (target === 1000 ? '+' : '');
+                clearInterval(timer);
+            } else {
+                stat.textContent = Math.floor(current);
+            }
+        }, 30);
+    });
+    
+    animated = true;
+}
+
+// Observer pour déclencher l'animation des stats
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateNumbers();
+        }
+    });
+}, { threshold: 0.5 });
+
+if (statsSection) {
+    observer.observe(statsSection);
+}
+    </script>
+</body>
+</html>
